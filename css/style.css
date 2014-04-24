@@ -1,0 +1,163 @@
+body{
+    margin:0;
+    padding:0;
+}
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+.clearfix {
+    display: inline-block;
+}
+html[xmlns] .clearfix {
+    display: block;
+}
+* html .clearfix {
+    height: 1%;
+}
+#tagsubmit{
+    background: #fff;
+    padding:17px 8px 15px;
+    font-weight: bold;
+    font-family:arial;
+    border:5px solid #BBF2CC;
+    text-decoration: none;
+    color:#000;
+}
+.container{
+    width: 300px !important;
+    height: inherit;
+    margin: 0 auto;
+}
+.row{
+    width:100% !important;
+    height:220px;
+    float:left;
+    text-align:center;
+    display:table-cell;
+    vertical-align:middle;
+}
+.container input{
+    height:50px;
+    max-width:400px;
+    width:85%;
+    margin:auto;
+    border:5px solid #bbf2cc;
+    font-weight:bold;
+    font-size:18px;
+    padding:0 10px;
+    color:#000;
+}
+.blue{
+    background:#99d9ea;
+}
+.bluenev{
+    background:#99d9ea;
+}
+.pink-con input {
+    width: 62%;
+}
+.blue span{
+    height:inherit;
+}
+.bluenev span{
+    height:inherit;
+}
+.blue form{
+    height:inherit;
+    width:300px;
+    margin:auto;
+}
+.bluenev form{
+    height:inherit;
+    width:300px;
+    margin:auto;
+}
+.yellow a{
+    height:inherit;
+}
+.yellow{
+    background:#fffa9b;
+}
+.pink{
+    background:#ff7979;
+}
+
+.pink a{
+    height:inherit;
+}
+.green{
+    background:#bbf2cc;
+}
+.green a, .pink-con{
+    height:inherit;
+    display:table-cell;
+    width: 300px;
+    text-align: center;
+    vertical-align:middle;
+}
+.yellownev a{
+    height:inherit;
+}
+.yellownev{
+    background:#fffa9b;
+}
+.pinknev{
+    background:#ff7979;
+}
+
+.pinknev a{
+    height:inherit;
+}
+.greennev{
+    background:#bbf2cc;
+}
+.greennev a, .pink-con{
+    height:inherit;
+    display:table-cell;
+    width: 300px;
+    text-align: center;
+    vertical-align:middle;
+}
+#editoron{
+    width:90%;
+    margin: 0 auto;
+}
+#editoron iframe{
+    width:99%;
+    border: 5px solid #BBF2CC !important;
+    color: #000000;
+    font-size: 18px;
+    font-weight: bold;
+    margin: auto;
+}
+
+.file-upload {
+    position: relative;
+}
+.file-upload input {
+    position: absolute;
+    visibility: hidden;
+    top: 0;
+    left: 0;
+}
+.overlay {background: rgba(0, 0, 0, 0.6); background-size:cover; width:324px; height:570px; position:absolute; z-index:999; top:0px;}
+.loading_img { padding:250px 0 0 0; text-align:center}
+
+/* file field stye*/
+.file-upload {
+                position: relative;
+            }
+            .file-upload input {
+                position: absolute;
+                visibility: hidden;
+                top: 0;
+                left: 0;
+            }
+            .overlay {background: rgba(0, 0, 0, 0.6); background-size:cover; width: 100%; height:570px; position:absolute; z-index:999; top:0px;}
+            .loading_img { padding:250px 0 0 0; text-align:center}
+
