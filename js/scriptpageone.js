@@ -14,6 +14,7 @@ $(function()
         // Grab the files and set them to our variable
         function prepareUploadImage(event)
         {
+            $("#demoLightbox").lightbox("hide");
             if($('#tagg').val()=='#' || $('#tagg').val()==''){
                 alert('please fill tag field first.');
                 return false;
@@ -24,6 +25,7 @@ $(function()
         }
         function prepareUploadVideo(event)
         {
+            $("#demoLightbox").lightbox("hide");
             if($('#tagg').val()=='#' || $('#tagg').val()==''){
                 alert('please fill tag field first.');
                 return false;
@@ -60,8 +62,10 @@ $(function()
                     $("head").append('<link rel="stylesheet" id="bootcss" href="./js/bootstrap/css/bootstrap.min.css" />');
                     $("#listpage").show();
                     $("#main").html(data);
+                    $('#pagetype').val(2);
                     $('#search').val($('#tagg').val());
                     var $container = $('#items');
+                    $("#demoLightbox").lightbox("hide");
                     $container.imagesLoaded(function(){
                         $container.masonry({
                             itemSelector : '.item',
@@ -109,8 +113,10 @@ function posttext(event){
             $("#editoron").hide();
             $("#listpage").show();
             $("#main").html(data);
+            $('#pagetype').val(2);
             var $container = $('#items');
             $('#search').val($('#tagg').val());
+            $("#demoLightbox").lightbox("hide");
             $container.imagesLoaded(function(){
                 $container.masonry({
                     itemSelector : '.item',
@@ -129,6 +135,7 @@ function posttext(event){
             $("#main").html(data);
             $('#search').val($('#tagg').val());
             var $container = $('#items');
+            $("#demoLightbox").lightbox("hide");
             $container.imagesLoaded(function(){
                 $container.masonry({
                     itemSelector : '.item',
@@ -146,6 +153,7 @@ function posttext(event){
             $("#listpage").show();
             $("#main").html(data);
             $('#search').val($('#tagg').val());
+            $("#demoLightbox").lightbox("hide");
             var $container = $('#items');
             $container.imagesLoaded(function(){
                 $container.masonry({
@@ -159,6 +167,7 @@ function posttext(event){
     });
 }    
 function iFrameOn(){
+    $("#demoLightbox").lightbox("hide");
     if($('#tagg').val()=='#' || $('#tagg').val()==''){
         alert('please fill tag field first.');
         return false;
@@ -183,6 +192,7 @@ function iFontSize(){
     rte.document.execCommand('fontSize', false, size);
 }
 function iFrameOn2(){
+    $("#demoLightbox").lightbox("hide");
     nevclose();
     $("#editoron").show();
     $("#one").hide();
@@ -200,13 +210,14 @@ function checkHashtag(){
     }
 }
 function windohight(){
-    var heig = (window.screen.height-70);
+    var heig = ($( window ).height()-70);
+    //alert(heig);
     var eachhight = (heig/3);
     $('.green').css("height", eachhight);
     $('.pink').css("height", eachhight);
     $('.yellow').css("height", eachhight);
     $('.blue').css("height", 70);
-    $('.overlay').css("height", heig);
+    $('.overlay').css("height", $( window ).height());
 }
 function search(){
   $(".overlay").show();
@@ -287,8 +298,11 @@ function tagitems(){
             $("#editoron").hide();
             $("#listpage").show();
             $("#main").html(data);
+            $('#pagetype').val(2);
+            videoposter();
             $('#search').val($('#tagg').val());
             var $container = $('#items');
+            $("#demoLightbox").lightbox("hide");
             $container.imagesLoaded(function(){
                 $container.masonry({
                     itemSelector : '.item',
@@ -296,7 +310,9 @@ function tagitems(){
                     isAnimated: true
                 });
             });
-            return "success";
+            $(".toltip").hide();
+            $("img").img_lightbox_tooltip();
+            return false;
         }
     });
 }
@@ -305,8 +321,19 @@ function loadHome(){
     $(".overlay").hide();
     $("#one").show();
     $("#listpage").hide();
+    $('#pagetype').val(1);
     return false;
 }
 function headertogal(){
-$( "#toggleheader" ).slideToggle();   
+$( "#toggleheader" ).toggle();   
+//$( "#toggleheader" ).slideToggle();   
+}
+
+function closetextarea(){
+    var pagetype = $('#pagetype').val();
+    if(pagetype==2){
+        $("#editoron").hide(); $("#listpage").show();
+    }else{
+        $("#editoron").hide(); $("#one").show();
+    }
 }

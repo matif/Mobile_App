@@ -31,9 +31,9 @@
     // option defaults
     $.MyFunc.defaults = {
         //...hash of default settings...
-		placement : "top", // top | bottom | right | left
-		tooltip_show : "always", // always | hover
-		title : "click to enlarge"
+		//placement : "top", // top | bottom | right | left
+		//tooltip_show : "always", // always | hover
+		//title : "click to enlarge"
     };
 
 })(jQuery);

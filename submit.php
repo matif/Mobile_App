@@ -35,21 +35,22 @@ if (isset($_GET['files'])) {
             $error = true;
         }
     }
-    $query = "SELECT * FROM " . $table . " WHERE status = 1 ORDER BY datetime DESC";
+    $query = "SELECT * FROM " . $table . " WHERE hashtag LIKE '%".$_REQUEST['tag']."%' AND status = 1 ORDER BY datetime DESC";
     $result = executeQuery($query);
     $data = '<div id="items" class="row-fluid">';
     foreach ($result as $record) {
         if ($record['image'] != '') {
             $rec = baseURL . 'uploads/' . $record['image'];
-            $rec = '<a class="image" title="Title" href="#">
+            $rec = '<a class="image" title="Title" href="javascript:void(0);">
                                     <img alt="" src="' . $rec . '">
                                 </a>';
         }
         if ($record['video'] != '') {
             $rec = baseURL . 'uploads/' . $record['video'];
-            $rec = '<video controls poster="'.$rec.'" width="100%">
+            $rec = '<video class="player_name" controls width="100%">
                     <source type="video/mp4" src="'.$rec.'">
                     <source type="video/ogg" src="'.$rec.'">
+                        <source src="'.$rec.'" type="video/webm;" />
                     <track kind="subtitles" srclang="en" src="'.$rec.'t"> 
                     <track kind="subtitles" srclang="ru" src="'.$rec.'"> 
                    </video>';
@@ -74,21 +75,22 @@ if (isset($_GET['files'])) {
         'status' => 1
     );
     $result = insertData($table, $insert);
-    $query = "SELECT * FROM " . $table . " WHERE status = 1 ORDER BY datetime DESC";
+    $query = "SELECT * FROM " . $table . " WHERE hashtag LIKE '%".$_REQUEST['tag']."%' AND status = 1 ORDER BY datetime DESC";
     $result = executeQuery($query);
     $data = '<div id="items" class="row-fluid">';
     foreach ($result as $record) {
         if ($record['image'] != '') {
             $rec = baseURL . 'uploads/' . $record['image'];
-            $rec = '<a class="image" title="Title" href="#">
+            $rec = '<a class="image" title="Title" href="javascript:void(0);">
                                     <img alt="" src="' . $rec . '">
                                 </a>';
         }
         if ($record['video'] != '') {
             $rec = baseURL . 'uploads/' . $record['video'];
-            $rec = '<video controls poster="'.$rec.'" width="100%">
+            $rec = '<video class="player_name" controls width="100%">
                     <source type="video/mp4" src="'.$rec.'">
                     <source type="video/ogg" src="'.$rec.'">
+                        <source src="'.$rec.'" type="video/webm;" />
                     <track kind="subtitles" srclang="en" src="'.$rec.'t"> 
                     <track kind="subtitles" srclang="ru" src="'.$rec.'"> 
                    </video>';
@@ -116,15 +118,16 @@ else if(isset($_GET['searchtag']) || isset ($_GET['tagitems'])){
     foreach ($result as $record) {
         if ($record['image'] != '') {
             $rec = baseURL . 'uploads/' . $record['image'];
-            $rec = '<a class="image" title="Title" href="#">
+            $rec = '<a class="image" title="Title" href="javascript:void(0);">
                                     <img alt="" src="' . $rec . '">
                                 </a>';
         }
         if ($record['video'] != '') {
             $rec = baseURL . 'uploads/' . $record['video'];
-            $rec = '<video controls poster="'.$rec.'" width="100%">
+            $rec = '<video class="player_name" controls width="100%">
                     <source type="video/mp4" src="'.$rec.'">
                     <source type="video/ogg" src="'.$rec.'">
+                    <source src="'.$rec.'" type="video/webm;" />
                     <track kind="subtitles" srclang="en" src="'.$rec.'t"> 
                     <track kind="subtitles" srclang="ru" src="'.$rec.'"> 
                    </video>';

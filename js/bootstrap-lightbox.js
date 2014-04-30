@@ -186,9 +186,10 @@
 				'left' : '50%',
 				'margin-left' : -1 * (preloader.width + padLeft + padRight) / 2
 			});
+   var winwidth = '97%';
 			that.$element.find('.lightbox-content').css({
-				'width': preloader.width,
-				'height': preloader.height
+				'width': winwidth,
+				'height': ($(window).height()-10)
 			});
 
 			// We have everything sized!
