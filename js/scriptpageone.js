@@ -4,17 +4,16 @@ $(function()
         var files;
         // Add events
         if($('#tagg').val()!='#' || $('#tagg').val()!=''){
-        $('#file_uploadimage').on('change', prepareUploadImage);
-        $('#file_uploadvideo').on('change', prepareUploadVideo);
-        $('#file_uploadimage2').on('change', prepareUploadImage);
-        $('#file_uploadvideo2').on('change', prepareUploadVideo);
-        $('#save').on('click', posttext);
+            $('#file_uploadimage').on('change', prepareUploadImage);
+            $('#file_uploadvideo').on('change', prepareUploadVideo);
+            $('#file_uploadimage2').on('change', prepareUploadImage);
+            $('#file_uploadvideo2').on('change', prepareUploadVideo);
+            $('#save').on('click', posttext);
         }
         //$('form').on('submit', uploadFiles);
         // Grab the files and set them to our variable
         function prepareUploadImage(event)
         {
-            $("#demoLightbox").lightbox("hide");
             if($('#tagg').val()=='#' || $('#tagg').val()==''){
                 alert('please fill tag field first.');
                 return false;
@@ -25,7 +24,6 @@ $(function()
         }
         function prepareUploadVideo(event)
         {
-            $("#demoLightbox").lightbox("hide");
             if($('#tagg').val()=='#' || $('#tagg').val()==''){
                 alert('please fill tag field first.');
                 return false;
@@ -37,8 +35,6 @@ $(function()
         // Catch the form submit and upload the files
         function uploadFiles(event,types)
         {
-            event.stopPropagation(); // Stop stuff happening
-            event.preventDefault(); // Totally stop stuff happening
             // START A LOADING SPINNER HERE
             $(".overlay").show();
             // Create a formdata object and add the files
@@ -59,13 +55,13 @@ $(function()
                 {
                     $(".overlay").hide();
                     $("#one").hide();
-                    $("head").append('<link rel="stylesheet" id="bootcss" href="./js/bootstrap/css/bootstrap.min.css" />');
+                    $("#toggleheader").hide();
+                    //$("head").append('<link rel="stylesheet" id="bootcss" href="./js/bootstrap/css/bootstrap.min.css" />');
                     $("#listpage").show();
                     $("#main").html(data);
                     $('#pagetype').val(2);
                     $('#search').val($('#tagg').val());
                     var $container = $('#items');
-                    $("#demoLightbox").lightbox("hide");
                     $container.imagesLoaded(function(){
                         $container.masonry({
                             itemSelector : '.item',
@@ -73,26 +69,9 @@ $(function()
                             isAnimated: true
                         });
                     });
-                    //$('#tagg').val('#');
-                    //window.location.href='pagetwo.html';
-                    if(typeof data.error === 'undefined')
-                    {
-                        // Success so call function to process the form
-                        //$('#tagg').val('#');
-                        submitForm(event, data);
-                    }
-                    else
-                    {
-                        // Handle errors here
-                        //$('#tagg').val('#');
-                        console.log('ERRORS: ' + data.error);
-                    }
-                },
-                error: function(jqXHR, textStatus, errorThrown)
-                {
-                    // Handle errors here
-                    console.log('ERRORS: ' + textStatus);
-                // STOP LOADING SPINNER
+                    return false
+                //$('#tagg').val('#');
+                //window.location.href='pagetwo.html';
                 }
             });
         }
@@ -108,7 +87,7 @@ function posttext(event){
             
         success: function(data)
         {
-            $("head").append('<link rel="stylesheet" id="bootcss" href="./js/bootstrap/css/bootstrap.min.css" />');
+            //$("head").append('<link rel="stylesheet" id="bootcss" href="./js/bootstrap/css/bootstrap.min.css" />');
             $(".overlay").hide();
             $("#editoron").hide();
             $("#listpage").show();
@@ -116,7 +95,6 @@ function posttext(event){
             $('#pagetype').val(2);
             var $container = $('#items');
             $('#search').val($('#tagg').val());
-            $("#demoLightbox").lightbox("hide");
             $container.imagesLoaded(function(){
                 $container.masonry({
                     itemSelector : '.item',
@@ -124,50 +102,11 @@ function posttext(event){
                     isAnimated: true
                 });
             });
-            return "success";
-        },
-        error: function()
-        {
-            $("head").append('<link rel="stylesheet" id="bootcss" href="./js/bootstrap/css/bootstrap.min.css" />');
-            $(".overlay").hide();
-            $("#editoron").hide();
-            $("#listpage").show();
-            $("#main").html(data);
-            $('#search').val($('#tagg').val());
-            var $container = $('#items');
-            $("#demoLightbox").lightbox("hide");
-            $container.imagesLoaded(function(){
-                $container.masonry({
-                    itemSelector : '.item',
-                    columnWidth : 290,
-                    isAnimated: true
-                });
-            });
-            return "error";
-        },
-        complete: function()
-        {
-            $("head").append('<link rel="stylesheet" href="./js/bootstrap/css/bootstrap.min.css" />');
-            $(".overlay").hide();
-            $("#editoron").hide();
-            $("#listpage").show();
-            $("#main").html(data);
-            $('#search').val($('#tagg').val());
-            $("#demoLightbox").lightbox("hide");
-            var $container = $('#items');
-            $container.imagesLoaded(function(){
-                $container.masonry({
-                    itemSelector : '.item',
-                    columnWidth : 290,
-                    isAnimated: true
-                });
-            });
-            return "success";
+            return false;
         }
     });
 }    
 function iFrameOn(){
-    $("#demoLightbox").lightbox("hide");
     if($('#tagg').val()=='#' || $('#tagg').val()==''){
         alert('please fill tag field first.');
         return false;
@@ -192,7 +131,6 @@ function iFontSize(){
     rte.document.execCommand('fontSize', false, size);
 }
 function iFrameOn2(){
-    $("#demoLightbox").lightbox("hide");
     nevclose();
     $("#editoron").show();
     $("#one").hide();
@@ -220,8 +158,8 @@ function windohight(){
     $('.overlay').css("height", $( window ).height());
 }
 function search(){
-  $(".overlay").show();
-  $("#toggleheader").hide();
+    $(".overlay").show();
+    $("#toggleheader").hide();
     var formData = 'searchtag='+$('#search').val();
     $.ajax({
         url: 'submit.php?searchtag',
@@ -243,40 +181,12 @@ function search(){
                 });
             });
             return "success";
-        },
-        error: function()
-        {
-            $(".overlay").hide();
-            $("#main").html(data);
-            var $container = $('#items');
-            $container.imagesLoaded(function(){
-                $container.masonry({
-                    itemSelector : '.item',
-                    columnWidth : 290,
-                    isAnimated: true
-                });
-            });
-            return "error";
-        },
-        complete: function()
-        {
-            $(".overlay").hide();
-            $("#main").html(data);
-            var $container = $('#items');
-            $container.imagesLoaded(function(){
-                $container.masonry({
-                    itemSelector : '.item',
-                    columnWidth : 290,
-                    isAnimated: true
-                });
-            });
-            return "success";
         }
     });  
     
 }
 function tagitems(){
-     if($('#tagg').val()=='#' || $('#tagg').val()==''){
+    if($('#tagg').val()=='#' || $('#tagg').val()==''){
         alert('please fill tag field first.');
         return false;
     }
@@ -293,16 +203,13 @@ function tagitems(){
         {
             $(".overlay").hide();
             $("#one").hide();
-            $("head").append('<link rel="stylesheet" id="bootcss" href="./js/bootstrap/css/bootstrap.min.css" />');
-            $(".overlay").hide();
+            //   $("head").append('<link rel="stylesheet" id="bootcss" href="./js/bootstrap/css/bootstrap.min.css" />');
             $("#editoron").hide();
             $("#listpage").show();
             $("#main").html(data);
             $('#pagetype').val(2);
-            videoposter();
             $('#search').val($('#tagg').val());
             var $container = $('#items');
-            $("#demoLightbox").lightbox("hide");
             $container.imagesLoaded(function(){
                 $container.masonry({
                     itemSelector : '.item',
@@ -310,14 +217,12 @@ function tagitems(){
                     isAnimated: true
                 });
             });
-            $(".toltip").hide();
-            $("img").img_lightbox_tooltip();
+            
             return false;
         }
     });
 }
 function loadHome(){
-    $("#bootcss").remove();
     $(".overlay").hide();
     $("#one").show();
     $("#listpage").hide();
@@ -325,15 +230,17 @@ function loadHome(){
     return false;
 }
 function headertogal(){
-$( "#toggleheader" ).toggle();   
+    $( "#toggleheader" ).toggle();   
 //$( "#toggleheader" ).slideToggle();   
 }
 
 function closetextarea(){
     var pagetype = $('#pagetype').val();
     if(pagetype==2){
-        $("#editoron").hide(); $("#listpage").show();
+        $("#editoron").hide();
+        $("#listpage").show();
     }else{
-        $("#editoron").hide(); $("#one").show();
+        $("#editoron").hide();
+        $("#one").show();
     }
 }

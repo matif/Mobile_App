@@ -19,7 +19,7 @@ if (isset($_GET['files'])) {
     $files = array();
     include 'config.php';
 
-    $uploaddir = 'uploads/';
+    $uploaddir = '../uploads/';
     foreach ($_FILES as $file) {
         $filename = time() . $file['name'];
         if (move_uploaded_file($file['tmp_name'], $uploaddir . basename($filename))) {
@@ -37,11 +37,11 @@ if (isset($_GET['files'])) {
     }
     $query = "SELECT * FROM " . $table . " WHERE hashtag LIKE '%".$_REQUEST['tag']."%' AND status = 1 ORDER BY datetime DESC";
     $result = executeQuery($query);
-    $data = '<div id="items" class="row-fluid">';
+    $data = '<div id="items" class="row-fluid" style="margin-left: 12px;">';
     foreach ($result as $record) {
         if ($record['image'] != '') {
             $rec = baseURL . 'uploads/' . $record['image'];
-            $rec = '<a class="image" title="Title" href="javascript:void(0);">
+            $rec = '<a class="image fancybox" title="Title" href="' . $rec . '">
                                     <img alt="" src="' . $rec . '">
                                 </a>';
         }
@@ -81,7 +81,7 @@ if (isset($_GET['files'])) {
     foreach ($result as $record) {
         if ($record['image'] != '') {
             $rec = baseURL . 'uploads/' . $record['image'];
-            $rec = '<a class="image" title="Title" href="javascript:void(0);">
+            $rec = '<a class="image fancybox" title="Title" href="' . $rec . '">
                                     <img alt="" src="' . $rec . '">
                                 </a>';
         }
@@ -118,7 +118,7 @@ else if(isset($_GET['searchtag']) || isset ($_GET['tagitems'])){
     foreach ($result as $record) {
         if ($record['image'] != '') {
             $rec = baseURL . 'uploads/' . $record['image'];
-            $rec = '<a class="image" title="Title" href="javascript:void(0);">
+            $rec = '<a class="image fancybox" title="Title" href="' . $rec . '">
                                     <img alt="" src="' . $rec . '">
                                 </a>';
         }
