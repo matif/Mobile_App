@@ -19,7 +19,7 @@ if (isset($_GET['files'])) {
     $files = array();
     include 'config.php';
 
-    $uploaddir = '../uploads/';
+    $uploaddir = 'uploads/';
     foreach ($_FILES as $file) {
         $filename = time() . $file['name'];
         if (move_uploaded_file($file['tmp_name'], $uploaddir . basename($filename))) {
@@ -35,9 +35,9 @@ if (isset($_GET['files'])) {
             $error = true;
         }
     }
-    $query = "SELECT * FROM " . $table . " WHERE hashtag LIKE '%".$_REQUEST['tag']."%' AND status = 1 ORDER BY datetime DESC";
+    $query = "SELECT * FROM " . $table . " WHERE hashtag = '".$_REQUEST['tag']."' AND status = 1 ORDER BY datetime DESC";
     $result = executeQuery($query);
-    $data = '<div id="items" class="row-fluid" style="margin-left: 12px;">';
+    $data = '<div id="items" class="row-fluid">';
     foreach ($result as $record) {
         if ($record['image'] != '') {
             $rec = baseURL . 'uploads/' . $record['image'];
@@ -75,7 +75,7 @@ if (isset($_GET['files'])) {
         'status' => 1
     );
     $result = insertData($table, $insert);
-    $query = "SELECT * FROM " . $table . " WHERE hashtag LIKE '%".$_REQUEST['tag']."%' AND status = 1 ORDER BY datetime DESC";
+    $query = "SELECT * FROM " . $table . " WHERE hashtag = '".$_REQUEST['tag']."' AND status = 1 ORDER BY datetime DESC";
     $result = executeQuery($query);
     $data = '<div id="items" class="row-fluid">';
     foreach ($result as $record) {
